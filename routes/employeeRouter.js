@@ -74,7 +74,6 @@ employeeRouter.post("/save", (req, res, next) => {
 employeeRouter.put(
   "/update/:id",
   expressAsyncHandler(async (req, res) => {
-
     const employeeId = req.params.id;
 
     const employeeUpdate = await Employee.findById(employeeId);
@@ -85,7 +84,6 @@ employeeRouter.put(
       { name: "file", maxCount: 1 },
     ]);
     upload(req, res, async function (err) {
-
       console.log("req", req.body);
       console.log("req", req.files);
 
@@ -159,5 +157,17 @@ employeeRouter.delete(
     }
   })
 );
+
+employeeRouter.get(
+  "/:text",
+  expressAsyncHandler(async (req, res) => {
+    console.log("req", req);
+
+    var fileName = req.params.text;
+    let directory_name = "./uploads/" + fileName;
+    res.download(directory_name);
+  })
+);
+
 
 export default employeeRouter;
