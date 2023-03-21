@@ -159,12 +159,13 @@ employeeRouter.delete(
 );
 
 employeeRouter.get(
-  "/:text",
+  "/:fname",
   expressAsyncHandler(async (req, res) => {
-    console.log("req", req);
+    // console.log("req", req);
 
-    var fileName = req.params.text;
+    var fileName = req.params.fname;
     let directory_name = "./uploads/" + fileName;
+    console.log("directory_name",directory_name);
     res.download(directory_name);
   })
 );
